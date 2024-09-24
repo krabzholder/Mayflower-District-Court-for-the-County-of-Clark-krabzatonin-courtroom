@@ -3,14 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF List</title>
+    <title>Mayflower District Court for the County of Clark</title>
 </head>
 <body>
-    <h1>PDF Documents</h1>
-    <ul>
-        <li><a href="path/to/pdf1.pdf" target="_blank">PDF 1</a></li>
-        <li><a href="path/to/pdf2.pdf" target="_blank">PDF 2</a></li>
-        <!-- Add more PDFs as needed lol-->
-    </ul>
+	<center><img width="100" src="https://i.imgur.com/Cw65AfX.png">
+    <h1>Mayflower District Court for the County of Clark</h1>
+    <h3>Courtroom 103 - krabzatonin</h3></center>
+    <p>Welcome to the very basic webpage for courtroom 103 in the Mayflower District Court for the County of Clark. Here, you can find rulings, orders, and other documents published by me.</p>
+<h1>PDF Documents</h1>
+    <ul id="pdf-list"></ul>
+
+    <script>
+        // Specify the PDF folder URL in your GitHub repository
+        const pdfFolder = 'https://your-username.github.io/your-repo-name/assets/pdfs/';
+
+        // List of PDF filenames in the folder
+        const pdfFiles = [
+            'document1.pdf',
+            'document2.pdf',
+            'document3.pdf',
+            // Add more PDFs here as needed
+        ];
+
+        // Get the PDF list container
+        const pdfList = document.getElementById('pdf-list');
+
+        // Loop through the PDF files and create list items with links
+        pdfFiles.forEach(file => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = pdfFolder + file;
+            link.target = '_blank';
+            link.textContent = file;
+            listItem.appendChild(link);
+            pdfList.appendChild(listItem);
+        });
+    </script>
 </body>
 </html>
