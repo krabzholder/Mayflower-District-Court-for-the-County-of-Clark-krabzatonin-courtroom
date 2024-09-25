@@ -3,7 +3,7 @@ import os
 # Path to the folder containing PDFs
 pdf_directory = './orders'
 
-# Start of the HTML list
+# Start of the HTML list and the JavaScript array
 html_list = ''
 pdf_files_array = []
 
@@ -23,7 +23,7 @@ with open('index.html', 'r+') as f:
     end_pos = html_content.find('</ul>', start_pos)
 
     # Insert the updated HTML list inside <ul id="pdf-list">
-    new_html_content = html_content[:start_pos] + '\n' + html_list + new_html_content[end_pos:]
+    new_html_content = html_content[:start_pos] + '\n' + html_list + html_content[end_pos:]
 
     # Update the PDF files array in the script
     pdf_files_js = ',\n            '.join(pdf_files_array)  # Join into a string for JS
