@@ -8,17 +8,16 @@
 <body>
     <center><img width="100" src="https://i.imgur.com/Cw65AfX.png">
     <h1>Mayflower District Court for the County of Clark</h1>
-    <h3>Courtroom 103 - Hon. krabzatonin</h3></center>
+    <h3>Courtroom 103 - Hon. krabzatonin, JD</h3></center>
     <p>Welcome to the very basic webpage for courtroom 103 in the Mayflower District Court for the County of Clark. Here, you can find rulings, orders, and other documents published by me.</p>
     <h1>Orders</h1>
     <ul id="pdf-list">
-<li><a href="./orders/CR-0006-24 Summons.pdf" target="_blank">CR-0006-24 Summons.pdf</a></li>
-<li><a href="./orders/turntabl.pdf" target="_blank">turntabl.pdf</a></li>
-</ul>
+        <!-- List will be populated by the script -->
+    </ul>
 
     <script>
-        // Specify the base URL for the GitHub repository
-        const baseURL = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/blob/main/orders/';
+        // Specify the PDF folder URL in your GitHub repository
+        const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/blob/main/orders/';
 
         // Fetch the list of PDFs from the server
         fetch('./orders/')
@@ -36,9 +35,9 @@
                     if (href.endsWith('.pdf')) {
                         const listItem = document.createElement('li');
                         const pdfLink = document.createElement('a');
-                        pdfLink.href = baseURL + href.split('/').pop(); // Get only the filename for the GitHub link
+                        pdfLink.href = pdfFolder + encodeURIComponent(href); // Update to use GitHub link
                         pdfLink.target = '_blank';
-                        pdfLink.textContent = href.split('/').pop(); // Use the filename for display text
+                        pdfLink.textContent = href;
                         listItem.appendChild(pdfLink);
                         pdfList.appendChild(listItem);
                     }
