@@ -12,40 +12,42 @@
     <p>Welcome to the very basic webpage for courtroom 103 in the Mayflower District Court for the County of Clark. Here, you can find rulings, orders, and other documents published by me.</p>
     <h1>Orders</h1>
     <ul id="pdf-list">
-<li><a href="./orders/turasdgntabl.pdf" target="_blank">turasdgntabl.pdf</a></li>
-<li><a href="./orders/CR-0006-24 Summons.pdf" target="_blank">CR-0006-24 Summons.pdf</a></li>
-<li><a href="./orders/turntabl.pdf" target="_blank">turntabl.pdf</a></li>
-</ul>
+        <!-- PDF links will be populated here -->
+    </ul>
 
     <script>
-        // Specify the PDF folder URL in your GitHub repository
         const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/blob/main/orders/';
 
-        // Fetch the list of PDFs from the server
-        fetch('./orders/')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data, 'text/html');
-                const links = doc.querySelectorAll('a');
+        // Function to fetch and update the PDF list
+        function updatePDFList() {
+            fetch('./orders/')
+                .then(response => response.text())
+                .then(data => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data, 'text/html');
+                    const links = doc.querySelectorAll('a');
 
-                // Get the PDF list container
-                const pdfList = document.getElementById('pdf-list');
+                    const pdfList = document.getElementById('pdf-list');
+                    pdfList.innerHTML = ''; // Clear existing list
 
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href.endsWith('.pdf')) {
-                        const listItem = document.createElement('li');
-                        const pdfLink = document.createElement('a');
-                        pdfLink.href = pdfFolder + encodeURIComponent(href); // Update to use GitHub link
-                        pdfLink.target = '_blank';
-                        pdfLink.textContent = href;
-                        listItem.appendChild(pdfLink);
-                        pdfList.appendChild(listItem);
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching PDF list:', error));
+                    links.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href.endsWith('.pdf')) {
+                            const listItem = document.createElement('li');
+                            const pdfLink = document.createElement('a');
+                            pdfLink.href = pdfFolder + encodeURIComponent(href);
+                            pdfLink.target = '_blank';
+                            pdfLink.textContent = href;
+                            listItem.appendChild(pdfLink);
+                            pdfList.appendChild(listItem);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching PDF list:', error));
+        }
+
+        // Call the function to update the PDF list on page load
+        window.onload = updatePDFList;
     </script>
 </body>
 </html>
