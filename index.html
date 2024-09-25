@@ -40,7 +40,7 @@
                 const pdfLink = document.createElement('a');
                 pdfLink.href = pdfFolder + encodeURIComponent(filename);
                 pdfLink.target = '_blank';
-                pdfLink.innerHTML = `<img src="https://example.com/image.jpg" alt="PDF Image" style="width: 50px; height: auto;"/> ${filename}`; // Add image here
+                pdfLink.innerHTML = `${filename}`; // Add image here
                 listItem.appendChild(pdfLink);
                 pdfList.appendChild(listItem);
             });
