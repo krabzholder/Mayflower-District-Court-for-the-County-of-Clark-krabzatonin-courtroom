@@ -13,25 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          ruby-version: '3.x' # Specify your Ruby version
-
-      - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle install
-
-      - name: Build Jekyll Site
-        run: |
-          bundle exec jekyll build
+          python-version: '3.x'
 
       - name: Run PDF list update script
         run: python update_pdf_list.py  # This runs the Python script
 
+      - name: Build Jekyll Site
+        run: |
+          npm install -g jekyll
+          jekyll build  # Build your Jekyll site
+
       - name: Wait before committing changes
-        run: sleep 20  # Wait for 60 seconds
+        run: sleep 60
 
       - name: Commit updated index.html
         run: |
