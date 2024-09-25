@@ -16,7 +16,7 @@ for filename in os.listdir(pdf_directory):
 with open('index.html', 'r+') as f:
     html_content = f.read()
 
-    # Insert the updated HTML list inside <ul id="pdf-list">
+    # Find the position of <ul id="pdf-list"> and update the list
     start_pos = html_content.find('<ul id="pdf-list">') + len('<ul id="pdf-list">')
     end_pos = html_content.find('</ul>', start_pos)
     new_html_content = html_content[:start_pos] + '\n' + html_list + html_content[end_pos:]
