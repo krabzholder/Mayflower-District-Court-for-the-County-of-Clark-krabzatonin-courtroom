@@ -5,12 +5,14 @@ pdf_directory = './orders'
 
 # Start of the HTML list
 html_list = ''
+pdf_files_array = []
 
 # Loop through the folder to find all PDF files
 for filename in os.listdir(pdf_directory):
     if filename.endswith('.pdf'):
         # Add the PDF to the HTML list
         html_list += f'<li><a href="{pdf_directory}/{filename}" target="_blank">{filename}</a></li>\n'
+        pdf_files_array.append(f'"{filename}"')  # Add to the JS array
 
 # Read the existing index.html file
 with open('index.html', 'r+') as f:
@@ -21,7 +23,11 @@ with open('index.html', 'r+') as f:
     end_pos = html_content.find('</ul>', start_pos)
 
     # Insert the updated HTML list inside <ul id="pdf-list">
-    new_html_content = html_content[:start_pos] + '\n' + html_list + html_content[end_pos:]
+    new_html_content = html_content[:start_pos] + '\n' + html_list + new_html_content[end_pos:]
+
+    # Update the PDF files array in the script
+    pdf_files_js = ',\n            '.join(pdf_files_array)  # Join into a string for JS
+    new_html_content = new_html_content.replace('const pdfFiles = [\n', f'const pdfFiles = [\n            {pdf_files_js},\n')
 
     # Overwrite the file with the updated content
     f.seek(0)
