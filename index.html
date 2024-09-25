@@ -15,5 +15,31 @@
 <li><a href="./orders/CR-0006-24 Summons.pdf" target="_blank">CR-0006-24 Summons.pdf</a></li>
 <li><a href="./orders/turntabl222e.pdf" target="_blank">turntabl222e.pdf</a></li>
 </ul>
+
+    <script>
+        // Specify the PDF folder URL in your GitHub repository
+        const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/tree/main/orders/';
+
+        // List of PDF filenames in the folder
+        const pdfFiles = [
+    "CR-0006-24 Summons.pdf",
+    "turntabl222e.pdf",
+];
+
+
+        // Get the PDF list container
+        const pdfList = document.getElementById('pdf-list');
+
+        // Loop through the PDF files and create list items with links
+        pdfFiles.forEach(file => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = pdfFolder + file;
+            link.target = '_blank';
+            link.textContent = file;
+            listItem.appendChild(link);
+            pdfList.appendChild(listItem);
+        });
+    </script>
 </body>
 </html>

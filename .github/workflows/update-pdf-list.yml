@@ -3,28 +3,29 @@ name: Update PDF List
 on:
   push:
     paths:
-      - 'orders/**'  # Trigger action when PDFs are added or changed in the orders folder
+      - 'orders/**'  # Trigger action when PDFs are added to the orders folder
 
 jobs:
-  update-pdf-list:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Run PDF list update script
-        run: python update_pdf_list.py  # This runs the Python script
+    - name: Run PDF list update script
+      run: |
+        python update_pdf_list.py  # Path to your Python script
 
-      - name: Commit updated index.html
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add index.html
-          git commit -m "Auto-update PDF list in index.html"
-          git push
+    - name: Commit changes
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git add index.html
+        git commit -m "Update PDF list"
+        git push
