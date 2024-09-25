@@ -35,7 +35,7 @@
             pdfFiles.forEach(filename => {
                 const listItem = document.createElement('li');
                 const pdfLink = document.createElement('a');
-                pdfLink.href = pdfFolder + encodeURIComponent(filename);
+                pdfLink.href = pdfFolder + encodeURIComponent(filename) + '?dl=0'; // Append ?dl=0
                 pdfLink.target = '_blank';
                 pdfLink.textContent = filename;
                 listItem.appendChild(pdfLink);
