@@ -17,7 +17,7 @@
 
     <script>
         // Define the path to the PDF files
-        const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/raw/main/orders/';
+        const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/blob/main/orders/';
         
         // Predefined list of PDF filenames
         const pdfFiles = [
@@ -35,7 +35,7 @@
             pdfFiles.forEach(filename => {
                 const listItem = document.createElement('li');
                 const pdfLink = document.createElement('a');
-                pdfLink.href = pdfFolder + encodeURIComponent(filename) + '?dl=0'; // Append ?dl=0
+                pdfLink.href = pdfFolder + encodeURIComponent(filename); // Link to the GitHub blob URL
                 pdfLink.target = '_blank';
                 pdfLink.textContent = filename;
                 listItem.appendChild(pdfLink);
