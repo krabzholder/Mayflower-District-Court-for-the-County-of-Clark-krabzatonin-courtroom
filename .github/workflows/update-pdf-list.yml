@@ -21,6 +21,9 @@ jobs:
       - name: Run PDF list update script
         run: python update_pdf_list.py  # This runs the Python script
 
+      - name: Wait before committing changes
+        run: sleep 60  # Wait for 60 seconds
+
       - name: Commit updated index.html
         run: |
           git config --global user.name 'GitHub Actions'
