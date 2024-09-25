@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayflower District Court for the County of Clark</title>
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Mayflower District Court - Orders"/>
+    <meta property="og:description" content="Access the latest court orders and documents."/>
+    <meta property="og:image" content="https://i.imgur.com/SxTDhVb.jpeg"/> <!-- Replace with your image URL -->
+    <meta property="og:url" content="https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom"/>
 </head>
 <body>
     <center><img width="100" src="https://i.imgur.com/Cw65AfX.png">
@@ -16,10 +22,8 @@
     </ul>
 
     <script>
-        // Define the path to the PDF files
         const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/blob/main/orders/';
         
-        // Predefined list of PDF filenames
         const pdfFiles = [
             'turasdgntabl.pdf',
             'sdfghsdfh.pdf',
@@ -27,23 +31,21 @@
             'turntabl.pdf'
         ];
 
-        // Function to update the PDF list
         function updatePDFList() {
             const pdfList = document.getElementById('pdf-list');
-            pdfList.innerHTML = ''; // Clear existing list
+            pdfList.innerHTML = '';
 
             pdfFiles.forEach(filename => {
                 const listItem = document.createElement('li');
                 const pdfLink = document.createElement('a');
-                pdfLink.href = pdfFolder + encodeURIComponent(filename); // Link to the GitHub blob URL
+                pdfLink.href = pdfFolder + encodeURIComponent(filename);
                 pdfLink.target = '_blank';
-                pdfLink.textContent = filename;
+                pdfLink.innerHTML = `<img src="https://example.com/image.jpg" alt="PDF Image" style="width: 50px; height: auto;"/> ${filename}`; // Add image here
                 listItem.appendChild(pdfLink);
                 pdfList.appendChild(listItem);
             });
         }
 
-        // Call the function to update the PDF list on page load
         window.onload = updatePDFList;
     </script>
 </body>
