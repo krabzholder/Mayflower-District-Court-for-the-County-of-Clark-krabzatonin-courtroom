@@ -24,6 +24,120 @@
         <li><a href= "https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/tree/main/other">Other/Miscellaneous</a></li>
     </ul>
 
+    <h1>Rulings</h1>
+    <ul id="rulings"></ul>
+
+    <script>
+      const repoOwner = 'krabzholder';  
+      const repoName = 'Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom';       
+      const folderPath = './rulings';       
+      const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${folderPath}`;
+  
+      async function fetchFileList() {
+        try {
+          const response = await fetch(apiUrl);
+          if (!response.ok) throw new Error('Failed to fetch file list');
+          const files = await response.json();
+          updateFileList(files);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+  
+      function updateFileList(files) {
+    const fileList = document.getElementById('rulings');
+    fileList.innerHTML = '';  
+  
+    files.forEach(file => {
+      const listItem = document.createElement('li');
+      const fileLink = document.createElement('a');
+      
+      // url stuff
+      fileLink.href = `https://github.com/${repoOwner}/${repoName}/blob/main/${folderPath}/${encodeURIComponent(file.name)}`;
+      
+      fileLink.textContent = file.name;
+      fileLink.target = '_blank'; // new tab :3
+      listItem.appendChild(fileLink);
+      fileList.appendChild(listItem);
+    });
+  }
+      fetchFileList();  
+    </script>
+
+<h1>Orders</h1>
+<ul id="orders"></ul>
+
+<script>
+  const folderPath2 = './orders';       
+
+  async function fetchFileList() {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Failed to fetch file list');
+      const files = await response.json();
+      updateFileList(files);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function updateFileList(files) {
+const fileList = document.getElementById('orders');
+fileList.innerHTML = '';  
+
+files.forEach(file => {
+  const listItem = document.createElement('li');
+  const fileLink = document.createElement('a');
+  
+  // url stuff
+  fileLink.href = `https://github.com/${repoOwner}/${repoName}/blob/main/${folderPath2}/${encodeURIComponent(file.name)}`;
+  
+  fileLink.textContent = file.name;
+  fileLink.target = '_blank'; // new tab :3
+  listItem.appendChild(fileLink);
+  fileList.appendChild(listItem);
+});
+}
+  fetchFileList();  
+</script>
+
+<h1>Other miscellaneous court documents</h1>
+<ul id="other"></ul>
+
+<script>     
+  const folderPath3 = './other';       
+
+  async function fetchFileList() {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Failed to fetch file list');
+      const files = await response.json();
+      updateFileList(files);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function updateFileList(files) {
+const fileList = document.getElementById('other');
+fileList.innerHTML = '';  
+
+files.forEach(file => {
+  const listItem = document.createElement('li');
+  const fileLink = document.createElement('a');
+  
+  // url stuff
+  fileLink.href = `https://github.com/${repoOwner}/${repoName}/blob/main/${folderPath2}/${encodeURIComponent(file.name)}`;
+  
+  fileLink.textContent = file.name;
+  fileLink.target = '_blank'; // new tab :3
+  listItem.appendChild(fileLink);
+  fileList.appendChild(listItem);
+});
+}
+  fetchFileList();  
+</script>
+
     <h1>Frequently asked questions</h1>
     <p>Q: How do I expunge my records?</p>
     <p>A: Check out the #expungement-info channel in the Mayflower District Court server.</p>
