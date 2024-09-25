@@ -12,8 +12,8 @@
     <p>Welcome to the very basic webpage for courtroom 103 in the Mayflower District Court for the County of Clark. Here, you can find rulings, orders, and other documents published by me.</p>
     <h1>Orders</h1>
     <ul id="pdf-list">
-<li><a href="./orders/CR-0006-24 Summons.pdf" target="_blank">CR-0006-24 Summons.pdf</a></li>
-</ul>
+        <!-- PDF list will be populated by the Python script -->
+    </ul>
 
     <script>
         // Specify the PDF folder URL in your GitHub repository
@@ -21,10 +21,9 @@
 
         // List of PDF filenames in the folder
         const pdfFiles = [
-    "CR-0006-24 Summons.pdf",
-    "turntabl222e.pdf",
-];
-
+            "CR-0006-24 Summons.pdf",
+            "turntabl222e.pdf",
+        ];
 
         // Get the PDF list container
         const pdfList = document.getElementById('pdf-list');
