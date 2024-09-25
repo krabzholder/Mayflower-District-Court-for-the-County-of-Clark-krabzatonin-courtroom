@@ -19,25 +19,31 @@
         // Specify the PDF folder URL in your GitHub repository
         const pdfFolder = 'https://github.com/krabzholder/Mayflower-District-Court-for-the-County-of-Clark-krabzatonin-courtroom/tree/main/orders/';
 
-        // List of PDF filenames in the folder
-        const pdfFiles = [
-            "CR-0006-24 Summons.pdf",
-            "turntabl222e.pdf",
-        ];
+        // Fetch the list of PDFs from the server
+        fetch('./orders/')
+            .then(response => response.text())
+            .then(data => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const links = doc.querySelectorAll('a');
 
-        // Get the PDF list container
-        const pdfList = document.getElementById('pdf-list');
+                // Get the PDF list container
+                const pdfList = document.getElementById('pdf-list');
 
-        // Loop through the PDF files and create list items with links
-        pdfFiles.forEach(file => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = pdfFolder + file;
-            link.target = '_blank';
-            link.textContent = file;
-            listItem.appendChild(link);
-            pdfList.appendChild(listItem);
-        });
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.endsWith('.pdf')) {
+                        const listItem = document.createElement('li');
+                        const pdfLink = document.createElement('a');
+                        pdfLink.href = pdfFolder + href;
+                        pdfLink.target = '_blank';
+                        pdfLink.textContent = href;
+                        listItem.appendChild(pdfLink);
+                        pdfList.appendChild(listItem);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching PDF list:', error));
     </script>
 </body>
 </html>
