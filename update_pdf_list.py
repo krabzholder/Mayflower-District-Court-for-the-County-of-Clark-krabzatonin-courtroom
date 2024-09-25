@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 # Path to the folder containing PDFs
 pdf_directory = './orders'
@@ -16,25 +17,14 @@ for filename in os.listdir(pdf_directory):
 with open('index.html', 'r+') as f:
     html_content = f.read()
 
-    # Find the existing PDF list to avoid duplicates
-    existing_list_start = html_content.find('<ul id="pdf-list">') + len('<ul id="pdf-list">')
-    existing_list_end = html_content.find('</ul>', existing_list_start)
-    existing_html_list = html_content[existing_list_start:existing_list_end]
+    # Find the position of <ul id="pdf-list"> and update the list
+    start_pos = html_content.find('<ul id="pdf-list">') + len('<ul id="pdf-list">')
+    end_pos = html_content.find('</ul>', start_pos)
+    new_html_content = html_content[:start_pos] + '\n' + html_list + html_content[end_pos:]
 
-    # Create a set of existing filenames to avoid duplicates
-    existing_files = set()
-    for line in existing_html_list.splitlines():
-        if 'href="' in line:
-            existing_files.add(line.split('"')[1].split('/')[-1])
-
-    # Generate new list without duplicates
-    final_html_list = ''
-    for filename in os.listdir(pdf_directory):
-        if filename.endswith('.pdf') and filename not in existing_files:
-            final_html_list += f'<li><a href="{pdf_directory}/{filename}" target="_blank">{filename}</a></li>\n'
-
-    # Update the HTML content with the new list
-    new_html_content = html_content[:existing_list_start] + '\n' + final_html_list + html_content[existing_list_end:]
+    # Add a comment with a timestamp to force HTML regeneration
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    new_html_content += f'\n<!-- Last updated: {timestamp} -->'
 
     # Overwrite the file with the updated content
     f.seek(0)
