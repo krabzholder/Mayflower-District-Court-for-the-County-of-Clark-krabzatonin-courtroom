@@ -22,7 +22,7 @@ jobs:
         run: python update_pdf_list.py  # This runs the Python script
 
       - name: Wait before committing changes
-        run: sleep 60  # Wait for 60 seconds
+        run: sleep 120
 
       - name: Commit updated index.html
         run: |
